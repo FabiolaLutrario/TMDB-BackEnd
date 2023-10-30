@@ -1,0 +1,31 @@
+{
+  "name": "tmdb-backend",
+  "version": "1.0.0",
+  "description": "Este  es el repositorio Back End de TMDB (The movie data base)",
+  "main": "api/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon api/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FabiolaLutrario/TMDB-BackEnd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FabiolaLutrario/TMDB-BackEnd/issues"
+  },
+  "homepage": "https://github.com/FabiolaLutrario/TMDB-BackEnd#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.33.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
