@@ -5,6 +5,12 @@ const User = require("../models/User");
 const router = express.Router();
 
 router.post("/register", (req, res) => {
+  const { name, last_name, email, password } = req.body;
+
+  if (!name || !last_name || !email || !password) {
+    return res.status(400).send({ error: "Todos los campos son obligatorios" });
+  }
+
   User.create(req.body).then((user) => {
     res.status(201).send(user);
   });
