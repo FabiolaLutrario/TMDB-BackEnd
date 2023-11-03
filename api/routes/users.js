@@ -2,6 +2,7 @@ const express = require("express");
 const { generateToken } = require("../config/tokens");
 const { validateAuth } = require("../config/auth");
 const User = require("../models/User");
+const Favorite = require("../models/Favorite");
 const router = express.Router();
 
 router.post("/register", (req, res) => {

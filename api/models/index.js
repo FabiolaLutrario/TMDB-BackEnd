@@ -1,7 +1,6 @@
 const User = require("./User");
 const Favorite = require("./Favorite");
 
-Favorite.belongsTo(User, { as: "user" });
-User.hasMany(Favorite, { as: "favorite" });
+//User.hasMany(Favorite);
 
 module.exports = { User, Favorite };
