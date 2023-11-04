@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const users = require("../routes/users");
-const films = require("../routes/films");
-const favorites = require("../routes/favorites");
+const users = require("./users");
+const films = require("./films");
+const favorites = require("./favorites");
 
 router.use("/users", users);
 router.use("/films", films);
