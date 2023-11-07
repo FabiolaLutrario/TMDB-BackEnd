@@ -3,7 +3,7 @@ const axios = require("axios");
 class FilmsController {
   static apiKey = "eb7ac5fce53eae88ea5e99a0a131a414";
 
-  static searchById(req, res) {
+  static searchFilmById(req, res) {
     const media_type = req.params.mediaType;
     const film_id = req.params.filmId;
 
@@ -20,7 +20,7 @@ class FilmsController {
       .catch((err) => console.log(err));
   }
 
-  static multiSearchByName(req, res) {
+  static multiSearchFilmsByName(req, res) {
     axios
       .get(`https://api.themoviedb.org/3/search/multi`, {
         params: {
@@ -66,13 +66,35 @@ class FilmsController {
       .catch((err) => console.log(err));
   }
 
-  static searchTvTrending(req, res) {
+  static searchFilmsTrending(req, res) {
     axios
       .get(
-        `https://api.themoviedb.org/3/trending/all/day?api_key=${FilmsController.apiKey}&language=en-US`
+        `https://api.themoviedb.org/3/trending/all/day?api_key=${FilmsController.apiKey}&language=en-US,es-ES`
       )
       .then((trendingTv) => {
         res.send(trendingTv.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  static searchMoviesUpcoming(req, res) {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/upcoming?api_key=${FilmsController.apiKey}&language=en-US,es-ES`
+      )
+      .then((upcoming) => {
+        res.send(upcoming.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  static searchActorsTrending(req, res) {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/trending/person/day?api_key=${FilmsController.apiKey}&language=en-US,es-ES`
+      )
+      .then((actors) => {
+        res.send(actors.data);
       })
       .catch((err) => console.log(err));
   }
