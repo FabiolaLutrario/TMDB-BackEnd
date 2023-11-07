@@ -1,15 +1,16 @@
 const axios = require("axios");
 
 class FilmsController {
+  static apiKey = "eb7ac5fce53eae88ea5e99a0a131a414";
+
   static searchById(req, res) {
-    const apiKey = "eb7ac5fce53eae88ea5e99a0a131a414";
     const media_type = req.params.mediaType;
     const film_id = req.params.filmId;
 
     axios
       .get(`https://api.themoviedb.org/3/${media_type}/${film_id}`, {
         params: {
-          api_key: apiKey,
+          api_key: FilmsController.apiKey,
           append_to_response: "videos",
         },
       })
@@ -20,12 +21,10 @@ class FilmsController {
   }
 
   static multiSearchByName(req, res) {
-    const apiKey = "eb7ac5fce53eae88ea5e99a0a131a414";
-
     axios
       .get(`https://api.themoviedb.org/3/search/multi`, {
         params: {
-          api_key: apiKey,
+          api_key: FilmsController.apiKey,
           query: req.params.filmName,
         },
       })
@@ -36,13 +35,12 @@ class FilmsController {
   }
 
   static searchMovieById(req, res) {
-    const apiKey = "eb7ac5fce53eae88ea5e99a0a131a414";
     const film_id = req.params.filmId;
 
     axios
       .get(`https://api.themoviedb.org/3/movie/${film_id}`, {
         params: {
-          api_key: apiKey,
+          api_key: FilmsController.apiKey,
           append_to_response: "videos",
         },
       })
@@ -53,18 +51,28 @@ class FilmsController {
   }
 
   static searchTvById(req, res) {
-    const apiKey = "eb7ac5fce53eae88ea5e99a0a131a414";
     const film_id = req.params.filmId;
 
     axios
       .get(`https://api.themoviedb.org/3/tv/${film_id}`, {
         params: {
-          api_key: apiKey,
+          api_key: FilmsController.apiKey,
           append_to_response: "videos",
         },
       })
       .then((tv) => {
         res.send(tv);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  static searchTvTrending(req, res) {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/trending/all/day?api_key=${FilmsController.apiKey}&language=en-US`
+      )
+      .then((trendingTv) => {
+        res.send(trendingTv.data);
       })
       .catch((err) => console.log(err));
   }
