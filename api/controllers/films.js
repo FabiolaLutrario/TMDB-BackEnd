@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 class FilmsController {
-  static apiKey = "eb7ac5fce53eae88ea5e99a0a131a414";
+  static apiKey = process.env.API_KEY;
 
   static searchFilmById(req, res) {
     const media_type = req.params.mediaType;
@@ -21,6 +21,7 @@ class FilmsController {
   }
 
   static multiSearchFilmsByName(req, res) {
+    console.log("Esta deberia ser laa api key: ", process.env.API_KEY);
     axios
       .get(`https://api.themoviedb.org/3/search/multi`, {
         params: {
