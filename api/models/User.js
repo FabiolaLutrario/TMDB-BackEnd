@@ -36,6 +36,9 @@ User.init(
     salt: {
       type: DataTypes.STRING,
     },
+    token: {
+      type: DataTypes.STRING,
+    },
   },
   {
     sequelize: db,
@@ -43,7 +46,7 @@ User.init(
   }
 );
 
-User.beforeCreate((user) => {
+User.beforeSave((user) => {
   const salt = bcrypt.genSaltSync();
 
   user.salt = salt;
