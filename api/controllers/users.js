@@ -75,7 +75,7 @@ class UsersController {
         .save()
         .then(() => {
           //Genera el link de recuperación de contraseña y lo envía por correo
-          const restorePasswordURL = `http://localhost:3000/restore-password/${user.token}`;
+          const restorePasswordURL = `http://localhost:3000/overwrite-password/${user.token}`;
           const info = transporter.sendMail({
             from: '"Recuperación de contraseña 👻" <fabiolalutrario@gmail.com>',
             to: user.email,
@@ -86,10 +86,22 @@ class UsersController {
             res.status(200).send(user.email);
           });
         })
-        .catch((error) => {
+        .catch(() => {
           res.send("Something went wrong");
-          console.error(error);
         });
+    });
+  }
+
+  static validateTokenToRestorePassword(req, res) {
+    const token = req.params.token;
+    if (!token) return res.sendStatus(401);
+
+    const { user } = validateToken(token);
+    if (!user) return res.sendStatus(401);
+
+    User.findOne({ where: { token } }).then((user) => {
+      if (!user) return res.sendStatus(401);
+      res.sendStatus(200);
     });
   }
 

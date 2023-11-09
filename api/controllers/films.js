@@ -21,7 +21,6 @@ class FilmsController {
   }
 
   static multiSearchFilmsByName(req, res) {
-    console.log("Esta deberia ser laa api key: ", process.env.API_KEY);
     axios
       .get(`https://api.themoviedb.org/3/search/multi`, {
         params: {
